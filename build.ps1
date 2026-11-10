@@ -1,0 +1,1 @@
+gcc -std=c11 -Wall -Wextra -Wpedantic -g src\main.c -o analyse.exe
