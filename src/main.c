@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 int main(int argc, char *argv[]) {
     // if argc is not 2, usage and return 1.
@@ -55,29 +56,36 @@ int main(int argc, char *argv[]) {
     fclose(pFile);
     printf("Size of the file: %ld bytes\n", filesize);
     
+    // limit the output to 256 bytes or the size of the file, whichever is smaller.
     long limit = 256;
     if (filesize < limit) {
         limit = filesize;
     }
-    
-    // print the data in hex format.
-    for (long i = 0; i < limit; i++) {
-        if (i % 16 == 0) {
-            printf("%08X: ", i);
-        }
-        printf("%02X ", data[i]);
-        // print a new line after every 16 bytes.
-        if ((i + 1) % 16 == 0) {
-            printf("\n");
-        }
-    }
 
-    // print a new line if the last line is not complete.
-    if (limit % 16 != 0) {
-        printf("\n");
-    }
+    for (long off = 0; off < limit; off += 16) {
+        printf("%08X: ", off);
+
+        for (int j = 0; j < 16; j++) {
+            if (off + j < limit) {
+                printf("%02X ", data[off + j]);
+            } else {
+                printf("   ");
+            }
+            
+        }
+        
+        printf(" |");
+
+        for (int j = 0; j < 16; j++) {
+            if (off + j < limit) {
+                unsigned char c = data[off + j];
+                printf("%c", isprint(c) ? c : '.');
+            }
+
+        }
+        printf("|\n");
+    }  
 
     free(data);
     return 0;
-
 }
