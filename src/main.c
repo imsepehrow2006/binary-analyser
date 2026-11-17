@@ -55,8 +55,16 @@ int main(int argc, char *argv[]) {
     fclose(pFile);
     printf("Size of the file: %ld bytes\n", filesize);
     
+    long limit = 256;
+    if (filesize < limit) {
+        limit = filesize;
+    }
+    
     // print the data in hex format.
-    for (long i = 0; i < filesize; i++) {
+    for (long i = 0; i < limit; i++) {
+        if (i % 16 == 0) {
+            printf("%08X: ", i);
+        }
         printf("%02X ", data[i]);
         // print a new line after every 16 bytes.
         if ((i + 1) % 16 == 0) {
@@ -65,10 +73,10 @@ int main(int argc, char *argv[]) {
     }
 
     // print a new line if the last line is not complete.
-    if (filesize % 16 != 0) {
+    if (limit % 16 != 0) {
         printf("\n");
     }
-    
+
     free(data);
     return 0;
 
