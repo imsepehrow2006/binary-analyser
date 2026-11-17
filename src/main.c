@@ -54,7 +54,22 @@ int main(int argc, char *argv[]) {
 
     fclose(pFile);
     printf("Size of the file: %ld bytes\n", filesize);
+    
+    // print the data in hex format.
+    for (long i = 0; i < filesize; i++) {
+        printf("%02X ", data[i]);
+        // print a new line after every 16 bytes.
+        if ((i + 1) % 16 == 0) {
+            printf("\n");
+        }
+    }
+
+    // print a new line if the last line is not complete.
+    if (filesize % 16 != 0) {
+        printf("\n");
+    }
+    
     free(data);
     return 0;
-    
+
 }
