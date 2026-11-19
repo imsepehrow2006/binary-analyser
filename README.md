@@ -40,7 +40,7 @@ Any path works, not just files in `samples`. To save the output instead of filli
 your terminal:
 
 ```powershell
-.\analyse.exe samples\cat.jpg > output.txt
+.\analyse.exe samples\hello.txt > output.txt
 ```
 
 With no filename it prints usage and exits.
