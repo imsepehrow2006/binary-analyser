@@ -1,48 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
-
-void dump_hex(const unsigned char *data, long size)
-{
-
-    long limit = 256;
-    long filesize = size;
-
-    if (filesize < limit)
-    {
-        limit = filesize;
-    }
-
-    for (long off = 0; off < limit; off += 16)
-    {
-        printf("%08X: ", off);
-
-        for (int j = 0; j < 16; j++)
-        {
-            if (off + j < limit)
-            {
-                printf("%02X ", data[off + j]);
-            }
-            else
-            {
-                printf("   ");
-            }
-        }
-
-        printf(" |");
-
-        for (int j = 0; j < 16; j++)
-        {
-            if (off + j < limit)
-            {
-                unsigned char c = data[off + j];
-                printf("%c", isprint(c) ? c : '.');
-            }
-        }
-        printf("|\n");
-    }
-}
-
+#include "dump.h"
 int main(int argc, char *argv[])
 {
     // if argc is not 2, usage and return 1.
