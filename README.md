@@ -33,7 +33,7 @@ gcc -std=c11 -Wall -Wextra -Wpedantic -g src\main.c -o analyse.exe
 ## Usage
 
 ```powershell
-.\analyse.exe samples\cat.jpg
+.\analyse.exe samples\hello.txt
 ```
 
 Any path works, not just files in `samples`. To save the output instead of filling

@@ -1,0 +1,2 @@
+Hello world!
+Binary analyser test file.
