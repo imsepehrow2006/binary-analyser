@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "dump.h"
+#include "filetype.h"
 int main(int argc, char *argv[])
 {
     // if argc is not 2, usage and return 1.
@@ -61,6 +62,8 @@ int main(int argc, char *argv[])
     fclose(pFile);
     printf("Size of the file: %ld bytes\n", filesize);
 
+    const char *filetype = identify_type(data, filesize);
+    printf("Type of the file: %s\n", filetype);
     dump_hex(data, filesize);
     free(data);
     return 0;

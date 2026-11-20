@@ -1,1 +1,1 @@
-gcc -std=c11 -Wall -Wextra -Wpedantic -g src\main.c src\dump.c -o analyse.exe
+gcc -std=c11 -Wall -Wextra -Wpedantic -g src\main.c src\dump.c src\filetype.c -o analyse.exe
